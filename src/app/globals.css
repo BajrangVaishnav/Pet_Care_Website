@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fff;
+    --foreground: #3e3838;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+
+
+
+
+/* Circular decorative shapes */
+.circle,
+.circle-inner {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Top left shapes */
+.circle-top-left {
+  top: 20px;
+  left: 20px;
+  width: 64px;
+  height: 64px;
+  border: 2px solid white;
+  opacity: 0.3;
+}
+.circle-top-left-inner {
+  top: 34px;
+  left: 34px;
+  width: 24px;
+  height: 24px;
+  background: #62d400;
+  opacity: 0.7;
+}
+/* Bottom center shapes */
+.circle-bottom-center {
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  background: white;
+  opacity: 0.8;
+  z-index: 1;
+}
+.circle-bottom-center-inner {
+  bottom: 26px;
+  left: calc(50% + 4px);
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: #62d400;
+  opacity: 0.9;
+  z-index: 2;
+}
+/* Top right shapes */
+.circle-top-right {
+  top: 10px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  border: 3px solid #e75f14; /* orange-ish */
+  opacity: 0.4;
+  z-index: 1;
+}
+.circle-top-right-inner {
+  top: 16px;
+  right: 28px;
+  width: 38px;
+  height: 38px;
+  background: #e75f14;
+  opacity: 0.3;
+  z-index: 2;
+}
+
+/* Services Grid */
+/* .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+} */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* Each Card */
+.card {
+  background: #333333;
+  border-radius: 1.25rem 0 1.25rem 1.25rem;
+  padding: 25px 25px 20px 25px;
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+}
+.card .icon-wrapper {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid #bbb;
+  border-radius: 50%;
+  padding: 5px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #bbb;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.card p.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: white;
+  line-height: 1.3;
+  min-height: 2.8em;
+}
+.card p.subtitle {
+  font-size: 0.8rem;
+  color: #9a9a9a;
+  margin: 0;
+  user-select: none;
+}
+/* Rounded corner top-right "button" arrow */
+.corner-arrow {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border-radius: 0 1rem 0 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  border: 1.5px solid #bbb;
+  border-left: none;
+  border-bottom: none;
+  color: #bbb;
+}
+.corner-arrow:hover {
+  background-color: #666;
+  color: white;
+  border-color: white;
+}
+.corner-arrow svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Highlight the active card (Virtual Consultations) */
+.active {
+  background-color: #62d400 !important;
+  color: white;
+  box-shadow: 0 6px 16px rgb(98 212 0 / 0.7);
+}
+.active .icon-wrapper {
+  border-color: white;
+  color: white;
+}
+.active .corner-arrow {
+  border-color: white;
+  color: white;
+}
+.active:hover {
+  background-color: #54b700 !important;
+  box-shadow: 0 6px 20px rgb(84 183 0 / 0.85);
+}
+
+/* Icon SVG color fill override for white/green */
+.icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 35px;
+  }
+  .card {
+    padding: 20px 20px 18px 20px;
+    border-radius: 1rem 0 1rem 1rem;
+  }
+  .corner-arrow {
+    width: 24px;
+    height: 24px;
+    top: 12px;
+    right: 12px;
+    border-width: 1px;
+  }
+  .corner-arrow svg {
+    width: 12px;
+    height: 12px;
+  }
+  .card .icon-wrapper {
+    width: 26px;
+    height: 26px;
+    padding: 4px;
+    margin-bottom: 10px;
+  }
+  .card p.title {
+    font-size: 1rem;
+    min-height: 2.4em;
+  }
+  .card p.subtitle {
+    font-size: 0.75rem;
+  }
+  /* Reduce circle sizes */
+  .circle-top-left {
+    width: 48px;
+    height: 48px;
+  }
+  .circle-top-left-inner {
+    width: 18px;
+    height: 18px;
+  }
+  .circle-bottom-center {
+    width: 36px;
+    height: 36px;
+  }
+  .circle-bottom-center-inner {
+    width: 12px;
+    height: 12px;
+  }
+  .circle-top-right {
+    width: 56px;
+    height: 56px;
+  }
+  .circle-top-right-inner {
+    width: 26px;
+    height: 26px;
+  }
+}
